@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:AppCFU"
+             mc:Ignorable="d"
+             x:Class="AppCFU.Page1" BackgroundColor="#333333">
+    <!--
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Text"/>
+    </ContentPage.ToolbarItems>
+    -->
+    <StackLayout x:Name="MainStack" Margin="25,0,25,0">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="#333333">
+            <Image Source="icon.png"/>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Выбор недели" FontSize="Large" TextColor="White"/>
+                <Label x:Name="label_week_color" Text="сейчас зелёная неделя" FontSize="Medium" TextColor="Green"/>
+            </StackLayout>
+            <Switch x:Name="switch" IsToggled="True" OnColor="Green" Style="{DynamicResource MainTheme}" Toggled="Switch_Toggled"/>
+        </StackLayout>
+        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,10,0,0">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start">
+                <Frame Padding="-7" CornerRadius="20">
+                    <Button Text="Понедельник" WidthRequest="200" HeightRequest="100" Clicked="Button_Clicked"/>
+                </Frame>
+                <Frame Padding="-7" CornerRadius="20">
+                    <Button Text="Вторник" WidthRequest="200" HeightRequest="100" Clicked="Button_Clicked"/>
+                </Frame>
+                <Frame Padding="-7" CornerRadius="20">
+                    <Button Text="Среда" WidthRequest="200" HeightRequest="100" Clicked="Button_Clicked"/>
+                </Frame>
+                <Frame Padding="-7" CornerRadius="20">
+                    <Button Text="Четверг" WidthRequest="200" HeightRequest="100" Clicked="Button_Clicked"/>
+                </Frame>
+                <Frame Padding="-7" CornerRadius="20">
+                    <Button Text="Пятница" WidthRequest="200" HeightRequest="100" Clicked="Button_Clicked"/>
+                </Frame>
+            </StackLayout>
+
+        </ScrollView>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+                <ListView x:Name="listview" HasUnevenRows="True" ItemSelected="Listview_ItemSelected"  VerticalScrollBarVisibility="Never">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type local:Schedule}">
+                            <local:Schedule NumberPara="1" NameLesson="Физическая культура" NameTeacher="Шилин В.Н." NumberRoom="1" />
+                        </x:Array>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:Name="dataTemplate">
+                            <local:ViewPara/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
